@@ -12,3 +12,6 @@ All notable changes are tracked here. Format follows keepachangelog.com and semv
 - Frontend scaffolding with TypeScript and TailwindCSS
 - Backend scaffolding with Rust
 - Infrastructure configuration templates
+- Login page with dark minimal design
+- Dashboard page with sidebar navigation
+- TailwindCSS dark theme configuration
