@@ -1,14 +1,14 @@
 {
-  "name": "frontend",
+  "name": "served-frontend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Frontend for served media server",
+  "main": "dist/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --loader tsx/esm src/server.ts",
+    "build": "tsc && tailwindcss -i src/styles/input.css -o dist/styles/output.css",
+    "start": "node dist/server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "type": "module",
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
@@ -16,5 +16,13 @@
       "onFail": "download"
     }
   },
-  "type": "module"
+  "dependencies": {
+    "lucide": "^0.408.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.5.0",
+    "tsx": "^4.15.0"
+  }
 }
