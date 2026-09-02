@@ -320,6 +320,7 @@ class UploadTracker {
   private container: HTMLDivElement
   private uploadHistory: any[] = []
   private isCollapsed: boolean = false
+  private historyTimeout: any = null
 
   constructor() {
     this.createContainer()
@@ -399,6 +400,7 @@ class UploadTracker {
         viewBtn.style.cursor = 'pointer'
         viewBtn.style.fontSize = '0.875rem'
         viewBtn.onclick = () => {
+          if (this.historyTimeout) clearTimeout(this.historyTimeout)
           const completed = this.uploadHistory.filter((u: any) => u.success).length
           const failed = this.uploadHistory.filter((u: any) => !u.success).length
           const overviewModal = new OverviewModal()
@@ -523,7 +525,19 @@ class UploadTracker {
       error: error
     })
 
+    setTimeout(() => {
+      if (this.uploads.has(id)) {
+        this.uploads.delete(id)
+        this.render()
+      }
+    }, 5000)
+
     if (this.uploads.size === this.uploadHistory.length) {
+      if (this.historyTimeout) clearTimeout(this.historyTimeout)
+      this.historyTimeout = setTimeout(() => {
+        this.uploadHistory = []
+        this.render()
+      }, 15000)
       this.render()
     }
   }
