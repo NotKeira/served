@@ -4,8 +4,8 @@
   "description": "Frontend for served media server",
   "main": "dist/server.js",
   "scripts": {
-    "dev": "node --loader tsx/esm src/server.ts",
-    "build": "tsc && tailwindcss -i src/styles/input.css -o dist/styles/output.css",
+    "dev": "node --import tsx/esm src/server.ts",
+    "build": "tsc && npx tailwindcss -i src/styles/input.css -o dist/styles/output.css",
     "start": "node dist/server.js"
   },
   "type": "module",
